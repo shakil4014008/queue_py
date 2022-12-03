@@ -117,6 +117,69 @@ q.queueDisplay()
 q.queueDequeue()
 q.queueDisplay()
 
+----------------circular queue implementation--
+
+class circularQueue: 
+    def __init__(self, size):
+        self.size  = size
+        # initialized with None for all the values for size
+        self.queue = [None for i in range(size)]
+        # must be -1 as 0 is a valid data and sized array
+        self.front = self.rear = -1 
+
+    def enqueue(self, data):
+        if (self.rear + 1) % self.size  == self.front:
+            print(' Queue is full')
+
+        # condition for empty empty queue
+        elif self.front  == -1:
+            self.front = 0
+            self.rear  = 0
+            self.queue[self.rear] = data
+        else: 
+            self.rear = (self.rear + 1) % self.size
+            self.queue[self.rear] = data
+
+    def dequeue(self):
+
+        if self.front  == -1: 
+            print('Queue full')
+        elif self.front == self.rear: 
+            temp = self.queue[self.front]
+            self.front = -1
+            self.rear  = -1
+            return temp
+        else: 
+            temp = self.queue[self.front]
+            self.front = (self.front + 1) % self.size
+            return temp
+    def display(self): 
+        if self.front == -1: 
+             print("Queue is empty")
+        elif self.rear >= self.front: 
+             for i in range(self.front, self.rear + 1): 
+                print(self.queue[i], end = " ")
+                print()
+        else: 
+              print('Element in queue', end = " ")
+              for i in range(self.front, self.size):
+                  print(self.queeu[i], end = " ")
+              for i in range(0, self.rear + 1):
+                  print(self.queue[i], end = " ")
+              print()
+        if (self.rear + 1) % self.size == self.front: 
+              print('Queue is full')
+
+# driver code
+ob  = circularQueue(5)
+ob.enqueue(14)
+ob.enqueue(22)
+ob.enqueue(44)
+ob.enqueue(55)
+ob.enqueue(-1)
+ob.display()
+print('deleted value=', ob.dequeue())
+ob.display()
 
 
 ````
