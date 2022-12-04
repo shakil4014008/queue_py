@@ -185,10 +185,9 @@ ob.display()
 
 # implement queue using stack
 '''
-Algorithm: 
 1. insert into s1 
-2. when pop, move all element to s2 and pop from s2
-T = O(1), S = (n)
+2. when pop, move all element from s1 to s2 and pop always from s2
+complexity: T = O(1), S = (n)
 '''
 class queue: 
     def __init__(self):
@@ -199,7 +198,7 @@ class queue:
         self.s1.append(x)
       
     def dequeue(self):
-        if len(self.s1) == 0 and len(self.s2) == 0: 
+        if len(self.s1) == 0 and len(self.s2) == 0: # check before doing operation
             print('Queue is empty')
             return 0
         elif len(self.s1) == 0 and len(self.s2) > 0: 
