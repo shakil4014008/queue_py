@@ -181,5 +181,41 @@ ob.display()
 print('deleted value=', ob.dequeue())
 ob.display()
 
+---------------implement queue using stack (2 stacks)
+
+# implement queue using stack
+'''
+Algorithm: 
+1. insert into s1 
+2. when pop, move all element to s2 and pop from s2
+T = O(1), S = (n)
+'''
+class queue: 
+    def __init__(self):
+      self.s1 = []
+      self.s2 = []
+
+    def enqueue(self, x):
+        self.s1.append(x)
+      
+    def dequeue(self):
+        if len(self.s1) == 0 and len(self.s2) == 0: 
+            print('Queue is empty')
+            return 0
+        elif len(self.s1) == 0 and len(self.s2) > 0: 
+            while len(self.s2): 
+                temp  = self.s1.pop()
+                self.s2.append(temp)
+            return self.s2.pop()
+
+    def display(self):
+        print(self.s1)
+            
+
+q  = queue()
+q.enqueue(10)
+q.enqueue(20)
+q.enqueue(30)
+q.display()
 
 ````
